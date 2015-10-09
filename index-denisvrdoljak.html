@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<!-- This js/d3 is based on the tutorial and example at http://bl.ocks.org/mbostock/3887118 -->
+
+
+<body>
+
+<script src="d3.min.js"></script>
+
+<script>
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+
+// setup x 
+var xValue = function(d) { return d.Planned;}, // data -> value
+    xScale = d3.scale.linear().range([0, width]), // value -> display
+    xMap = function(d) { return xScale(xValue(d));}, // data -> display
+    xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+
+// setup y
+var yValue = function(d) { return d["Actual"];}, // data -> value
+    yScale = d3.scale.linear().range([height, 0]), // value -> display
+    yMap = function(d) { return yScale(yValue(d));}, // data -> display
+    yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+var labelMap = function(d) { return d.Expenses;};
+// setup fill color
+var cValue = function(d) { return d.Category;}, color = d3.scale.category10();
+
+// add graph to <body>
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+// load data
+d3.csv("bills.csv", function(error, data) {
+  data.forEach(function(d) {
+    d.Planned = +d.Planned;
+    d.Actual = +d.Actual;
+  });
+
+  // for overlap
+  xScale.domain([d3.min(data, xValue)-5, d3.max(data, xValue)+5]);
+  yScale.domain([d3.min(data, yValue)-5, d3.max(data, yValue)+5]);
+
+  // x-axis
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("x", width)
+      .attr("y", -5)
+      .style("text-anchor", "end")
+      .text("Planned Expenses");
+
+  // y-axis
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 25)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Actual Expenses");
+
+  // plot points
+  svg.selectAll(".dot")
+      .data(data)
+    .enter().append("circle")
+      .attr("class", "dot")
+      .attr("r", 10)
+      .attr("cx", xMap)
+      .attr("cy", yMap)
+       .style("fill", function(d) { return color(cValue(d));})
+       ;
+       
+       //draw labels
+       
+       var node = svg.selectAll("g")
+       .data(data)
+       .enter()
+       .append("g");
+       
+       node.append("text")
+       .attr("x", xMap)
+       .attr("y", yMap)
+       .text(function(d){return d.Expense})
+       .attr("font-family", "sans-serif")
+       .attr("font-size", "10px")
+       .attr("fill", function(d) { return color(cValue(d));});;
+       
+       });
+</script>
+</body>
+</html>

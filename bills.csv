@@ -1,0 +1,33 @@
+Expense,Category,Type,Planned,Actual
+Mortgage / Rent,Cost of Living,C,600,150
+Home Equity Loan / Line Of Credit,Bad Decisions,C,100,100
+Home Insurance,Cost of Living,C,25,25
+Credit Card #1,Cost of Living,C,100,100
+Credit Card #2,Bad Decisions,C,75,275
+Credit Card #3,Business Expense,C,45,45
+Credit Card #4 (why do I have so many?!),Cost of Living,C,25,25
+Car Payment,Cost of Living,C,200,200
+Car Insurance,Business Expense,C,65,65
+Parking ,Business Expense,C,50,50
+Tolls,Business Expense,C,80,80
+Gasoline,Cost of Living,C,60,120
+Subway,Cost of Living,C,0,0
+Health Insurance,Cost of Living,C,45,45
+Cable /Satellite TV,Bad Decisions,C,55,55
+Internet Access,Business Expense,C,60,60
+Phone Bill,Cost of Living,C,0,0
+Mobile Phone Bill(s),Business Expense,C,35,95
+Daycare/Babysitting,Business Expense,C,0,45
+Groceries,Cost of Living,C,100,210
+Pet care,Cost of Living,H,0,20
+Gym Membership,Cost of Living,C,0,0
+Heating,Cost of Living,C,25,25
+Electric Bill,Cost of Living,C,50,80
+Water Bill,Cost of Living,C,25,30
+Lawn Care,Cost of Living,C,0,0
+Unplanned: Vet Bill,Cost of Living,C,0,250
+Unplanned: Dinner party,Bad Decisions,C,0,70
+Unplanned: Car repairs,Business Expense,C,0,250
+Unplanned: Parking Ticket,Bad Decisions,C,0,450
+Unplanned: Dishwasher repair,Cost of Living,C,0,100
+Conference,Business Expense,C,400,500
